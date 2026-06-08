@@ -2,9 +2,15 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "redirects": [
     {
-      "source": "/:path*",
+      "source": "/",
       "has": [{ "type": "host", "value": "www.sinapsa.co" }],
-      "destination": "https://sinapsa.co/:path*",
+      "destination": "https://sinapsa.co/",
+      "permanent": true
+    },
+    {
+      "source": "/:path+",
+      "has": [{ "type": "host", "value": "www.sinapsa.co" }],
+      "destination": "https://sinapsa.co/:path+",
       "permanent": true
     }
   ]
