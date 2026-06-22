@@ -64,30 +64,30 @@
     background:
       radial-gradient(ellipse 60% 65% at 76% 50%,rgba(122,102,204,.055) 0%,transparent 60%),
       radial-gradient(ellipse 38% 40% at 26% 28%,rgba(232,105,79,.04) 0%,transparent 55%);}
-  .hero-body{flex:1;display:grid;grid-template-columns:52fr 48fr;align-items:center;
-    max-width:1400px;width:100%;margin:0 auto;padding:60px 52px 28px;position:relative;z-index:2;}
+  .hero-body{flex:1;display:grid;grid-template-columns:50fr 50fr;align-items:center;
+    max-width:1480px;width:100%;margin:0 auto;padding:60px 56px 28px;position:relative;z-index:2;}
   .hero-left{padding-right:56px;min-width:0;}
-  .hero-eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);
-    font-size:10.5px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--coral);
-    margin-bottom:26px;opacity:0;animation:heroFadeUp .55s cubic-bezier(.16,1,.3,1) both .2s;}
-  .hero-title{font-size:clamp(34px,5vw,48px);font-weight:800;line-height:1.08;letter-spacing:-.035em;
-    color:#fff;margin-bottom:22px;opacity:0;animation:heroFadeUp .65s cubic-bezier(.16,1,.3,1) both .38s;}
+  .hero-eyebrow{display:inline-flex;align-items:center;gap:12px;font-family:var(--mono);
+    font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--coral);
+    margin-bottom:28px;opacity:0;animation:heroFadeUp .55s cubic-bezier(.16,1,.3,1) both .2s;}
+  .hero-title{font-size:clamp(36px,4.6vw,64px);font-weight:800;line-height:1.05;letter-spacing:-.035em;
+    color:#fff;margin-bottom:24px;opacity:0;animation:heroFadeUp .65s cubic-bezier(.16,1,.3,1) both .38s;}
   .hero-title .accent{color:var(--coral);}
-  .hero-sub{font-size:15.5px;line-height:1.62;color:rgba(233,239,247,.52);max-width:500px;
-    margin-bottom:36px;opacity:0;animation:heroFadeUp .65s cubic-bezier(.16,1,.3,1) both .54s;}
+  .hero-sub{font-size:17.5px;line-height:1.6;color:rgba(233,239,247,.56);max-width:580px;
+    margin-bottom:38px;opacity:0;animation:heroFadeUp .65s cubic-bezier(.16,1,.3,1) both .54s;}
   .hero-ctas{display:flex;align-items:center;gap:12px;flex-wrap:wrap;
     opacity:0;animation:heroFadeUp .55s cubic-bezier(.16,1,.3,1) both .68s;}
-  .btn-prime{display:inline-flex;align-items:center;gap:8px;font-size:14.5px;font-weight:600;
-    padding:13px 26px;border-radius:9px;background:var(--coral);color:#fff;text-decoration:none;
+  .btn-prime{display:inline-flex;align-items:center;gap:8px;font-size:15.5px;font-weight:600;
+    padding:15px 30px;border-radius:10px;background:var(--coral);color:#fff;text-decoration:none;
     border:0;cursor:pointer;transition:background .18s,transform .18s;}
   .btn-prime:hover{background:#d85e44;transform:translateY(-1px);}
-  .btn-sec{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:500;
-    padding:13px 22px;border-radius:9px;background:transparent;color:rgba(233,239,247,.52);
+  .btn-sec{display:inline-flex;align-items:center;gap:6px;font-size:15px;font-weight:500;
+    padding:15px 26px;border-radius:10px;background:transparent;color:rgba(233,239,247,.56);
     text-decoration:none;border:1.5px solid rgba(233,239,247,.07);transition:color .15s,border-color .15s;}
   .btn-sec:hover{color:#fff;border-color:rgba(233,239,247,.22);}
   .hero-right{display:flex;align-items:center;justify-content:center;
     opacity:0;animation:heroFadeIn 1s ease both .5s;}
-  #sn-diagram{width:100%;max-width:580px;height:auto;display:block;}
+  #sn-diagram{width:100%;max-width:660px;height:auto;display:block;}
   .hero-diagram-slot{display:none;}
   .hero-strip{border-top:1px solid rgba(233,239,247,.07);position:relative;z-index:2;}
   .hero-strip-inner{max-width:1400px;margin:0 auto;padding:0 52px;display:flex;
@@ -387,12 +387,12 @@
 <nav id="nav">
   <div class="wrap nav-inner">
     <a href="#topo" class="logo-lock" style="--mk-c:#fff;--ac:var(--coral);">
-      <svg class="mk" style="width:34px;" viewBox="0 0 120 104" fill="none" aria-label="Sinapsa">
+      <svg class="mk" style="width:40px;" viewBox="0 0 120 104" fill="none" aria-label="Sinapsa">
         <path d="M10 26 L58 52 M10 52 L58 52 M10 78 L58 52" stroke-width="6" stroke-linecap="round"/>
         <line class="ac-l" x1="62" y1="52" x2="112" y2="52" stroke-width="6" stroke-linecap="round"/>
         <circle class="node" cx="58" cy="52" r="12.5"/><circle class="ac-d" cx="112" cy="52" r="8.5"/>
       </svg>
-      <span class="logo-word" style="color:#fff;font-size:22px;">sinapsa</span>
+      <span class="logo-word" style="color:#fff;font-size:25px;">sinapsa</span>
     </a>
     <div class="nav-links">
       <a href="#tese">A tese</a>
@@ -856,6 +856,7 @@
     }
     place(mq);
     if(mq.addEventListener) mq.addEventListener('change',place); else mq.addListener(place);
+    window.addEventListener('resize',function(){place(mq);},{passive:true});
   })();
 
   var io=new IntersectionObserver(function(entries){
@@ -996,7 +997,9 @@
     var canvas=document.getElementById('sn-diagram');
     if(!canvas)return;
     var ctx=canvas.getContext('2d');
-    var W=canvas.width,H=canvas.height;
+    var W=580,H=360,SS=2;            // espaço lógico 580x360, renderizado em 2x para nitidez ao ampliar
+    canvas.width=W*SS;canvas.height=H*SS;
+    ctx.scale(SS,SS);
     var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches;
     var t0=null;
 
@@ -1116,11 +1119,10 @@
     ctx.fillText('ENTREGUE',N.v.x,N.v.y+N.v.r+27);
   }
 
-  if(document.fonts&&document.fonts.ready){
-    document.fonts.ready.then(init).catch(init);
-  } else {
-    setTimeout(init,300);
-  }
+  var _started=false;
+  function startOnce(){ if(_started)return; _started=true; init(); }
+  if(document.fonts&&document.fonts.ready){ document.fonts.ready.then(startOnce).catch(startOnce); }
+  setTimeout(startOnce,600);   // fallback caso as fontes demorem/falhem a carregar
 })();
 </script>
 </body>
