@@ -46,6 +46,8 @@ edições/datas, números/resultados, business cases e imagens com direito de us
 LP independente detalhando o Campustart.
 **Rascunho concluído:** `lp-drafts/LP-Campustart-01-rascunho.md` (etapa 1/5).
 **Wireframe concluído:** `lp-drafts/LP-Campustart-02-wireframe.html` (etapa 2/5).
+**Design A/B/C concluído:** `lp-drafts/LP-Campustart-03-{A-sobrio,B-esportivo,C-editorial}.html` (etapa 3/5).
+**Banca de UX concluída:** `lp-drafts/LP-Campustart-04-banca-ux.md` (etapa 4/5) — recomenda A como base.
 
 - **Conteúdo:** metodologia, edições realizadas (datas, instituições, times),
   resultados, depoimentos.
