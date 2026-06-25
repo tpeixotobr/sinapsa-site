@@ -45,6 +45,7 @@ edições/datas, números/resultados, business cases e imagens com direito de us
 ### LP-01 · Landing Page Campustart `🎨 em design`
 LP independente detalhando o Campustart.
 **Rascunho concluído:** `lp-drafts/LP-Campustart-01-rascunho.md` (etapa 1/5).
+**Wireframe concluído:** `lp-drafts/LP-Campustart-02-wireframe.html` (etapa 2/5).
 
 - **Conteúdo:** metodologia, edições realizadas (datas, instituições, times),
   resultados, depoimentos.

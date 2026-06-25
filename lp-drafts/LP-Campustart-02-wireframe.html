@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wireframe · LP Campustart (baixa fidelidade)</title>
+<style>
+  :root{ --ink:#222; --mut:#777; --line:#999; --box:#ededed; --ph:#fde2c4; --phb:#e6a455; }
+  *{ box-sizing:border-box; }
+  body{ margin:0; font-family:Arial, Helvetica, sans-serif; color:var(--ink);
+        background:#f4f4f4; line-height:1.4; }
+  /* barra de contexto do wireframe (não faz parte da página) */
+  .meta{ background:#222; color:#eee; padding:10px 16px; font-size:12px; }
+  .meta b{ color:#fff; }
+  .wrap{ max-width:1000px; margin:24px auto; padding:0 16px; }
+  .annot{ font-size:11px; color:var(--mut); text-transform:uppercase;
+           letter-spacing:.08em; margin:26px 0 6px; }
+  .block{ background:#fff; border:1px solid var(--line); border-radius:6px;
+          padding:22px; margin-bottom:8px; }
+  .skeleton{ background:var(--box); border-radius:4px; }
+  .bar{ height:16px; margin:8px 0; }
+  .bar.t{ height:30px; width:72%; }      /* título */
+  .bar.s{ height:14px; width:90%; }       /* subtítulo / linha */
+  .bar.s2{ width:60%; }
+  .row{ display:flex; gap:14px; flex-wrap:wrap; }
+  .col{ flex:1 1 0; min-width:140px; }
+  .card{ border:1px dashed var(--line); border-radius:6px; padding:16px;
+         background:#fafafa; }
+  .btn{ display:inline-block; border:2px solid var(--ink); border-radius:6px;
+        padding:10px 18px; font-weight:bold; font-size:13px; margin:6px 8px 0 0; }
+  .btn.ghost{ border-style:dashed; font-weight:normal; color:var(--mut); }
+  .img{ background:repeating-linear-gradient(45deg,#e4e4e4,#e4e4e4 10px,#dadada 10px,#dadada 20px);
+        border:1px solid var(--line); border-radius:6px; display:flex;
+        align-items:center; justify-content:center; color:#888; font-size:12px;
+        min-height:120px; }
+  .num{ font-size:34px; font-weight:bold; }
+  .lab{ font-size:11px; color:var(--mut); text-transform:uppercase; }
+  .ph{ background:var(--ph); border:1px dashed var(--phb); border-radius:4px;
+       padding:2px 6px; font-size:11px; color:#8a5a16; font-weight:bold; }
+  h2.bt{ font-size:15px; margin:0 0 4px; }
+  .hint{ font-size:12px; color:var(--mut); margin:2px 0 12px; }
+  .step{ display:flex; gap:12px; align-items:flex-start; margin:10px 0; }
+  .step .n{ width:28px; height:28px; border-radius:50%; border:1px solid var(--line);
+            display:flex; align-items:center; justify-content:center; font-weight:bold;
+            flex:0 0 28px; font-size:13px; }
+  footer{ text-align:center; color:var(--mut); font-size:12px; padding:30px; }
+</style>
+</head>
+<body>
+
+<div class="meta">
+  WIREFRAME — baixa fidelidade · <b>LP Campustart</b> · etapa 2/5 ·
+  sem identidade visual (cor/tipografia/imagens vêm no A/B/C) ·
+  <span class="ph">laranja</span> = lacuna a confirmar
+</div>
+
+<div class="wrap">
+
+  <!-- HERO -->
+  <div class="annot">Bloco 0 · Hero</div>
+  <div class="block">
+    <div class="skeleton bar s2" style="height:11px;width:34%"></div>
+    <div class="hint">eyebrow: "Inovação nas universidades"</div>
+    <div class="skeleton bar t"></div>
+    <h2 class="bt" style="margin-top:6px">Título = mensagem central</h2>
+    <div class="hint">"Campustart conecta desafios reais de empresas a estudantes e
+      pesquisadores — e transforma conhecimento de fronteira em soluções, talentos
+      e transferência tecnológica."</div>
+    <div class="skeleton bar s"></div>
+    <a class="btn">Levar o Campustart p/ universidade/empresa</a>
+    <a class="btn ghost">Ver edições ↓</a>
+    <div class="hint" style="margin-top:10px">selo de prova: "Reconhecido pela ANPEI ·
+      apoio MIT-REAP"</div>
+  </div>
+
+  <!-- O QUE É -->
+  <div class="annot">Bloco 1 · O que é o Campustart</div>
+  <div class="block">
+    <div class="row">
+      <div class="col" style="flex:1.3">
+        <h2 class="bt">Conceito em 2–3 linhas</h2>
+        <div class="skeleton bar s"></div>
+        <div class="skeleton bar s"></div>
+        <div class="skeleton bar s s2"></div>
+        <div class="hint">conecta desafios corporativos a estudantes/pesquisadores ·
+          identifica talentos · soluções inusitadas · transferência tecnológica ·
+          conceito "blind spot breakthroughs"</div>
+      </div>
+      <div class="col"><div class="img">imagem/ilustração</div></div>
+    </div>
+  </div>
+
+  <!-- METODOLOGIA -->
+  <div class="annot">Bloco 2 · Metodologia / jornada (≈40h)</div>
+  <div class="block">
+    <h2 class="bt">Como funciona a jornada</h2>
+    <div class="hint">base proprietária: psicologia clínica · neurociência ·
+      análise transacional · dinâmica de grupos · ágil</div>
+    <div class="step"><div class="n">1</div><div>
+      <b>Identificação de desafios</b> — problemas e oportunidades reais.
+      <div class="skeleton bar s" style="margin-top:4px"></div></div></div>
+    <div class="step"><div class="n">2</div><div>
+      <b>Indicadores e valoração de benefícios</b> — KPIs e ROI previsto.
+      <div class="skeleton bar s"></div></div></div>
+    <div class="step"><div class="n">3</div><div>
+      <b>Formação de grupos e propostas</b> — times multidisciplinares; plano,
+      tecnologias, recursos, parceiros.<div class="skeleton bar s"></div></div></div>
+    <div class="step"><div class="n">★</div><div>
+      <b>Demoday</b> — pitch para banca de especialistas e lideranças.</div></div>
+  </div>
+
+  <!-- EDIÇÕES -->
+  <div class="annot">Bloco 3 · Edições realizadas (prova)</div>
+  <div class="block">
+    <h2 class="bt">Campustart · UNIRIO</h2>
+    <div class="row" style="margin:10px 0">
+      <div class="col card"><div class="num">24</div><div class="lab">soluções</div></div>
+      <div class="col card"><div class="num">14</div><div class="lab">cursos</div></div>
+      <div class="col card"><div class="num">4</div><div class="lab">edições</div></div>
+      <div class="col card"><div class="num">40h</div><div class="lab">jornada</div></div>
+    </div>
+    <div class="card" style="border-color:var(--phb);background:var(--ph)">
+      <span class="ph">LACUNA 2</span> &nbsp;lista oficial/atual de edições Campustart
+      (além da UNIRIO) + números por edição. <br>
+      <span class="ph">LACUNA 3</span> &nbsp;citar ou não a linha corporativa
+      (Eletrobras/Boticário) nesta LP.
+      <div class="hint" style="margin-top:6px">lastro disponível p/ placeholder:
+        3ª Olimpíada de Energia 2022 — 304 inscrições · 25 times · 113 atletas ·
+        41 mentores · 34 instituições · apoio MIT-REAP Rio.</div>
+    </div>
+  </div>
+
+  <!-- RESULTADOS -->
+  <div class="annot">Bloco 4 · Resultados e impacto</div>
+  <div class="block">
+    <div class="row">
+      <div class="col card"><div class="num">R$ —</div><div class="lab">valor gerado
+        <span class="ph">LACUNA 3</span></div></div>
+      <div class="col card"><div class="num">+—</div><div class="lab">talentos
+        identificados</div></div>
+      <div class="col card"><div class="num">—</div><div class="lab">soluções com
+        continuidade</div></div>
+    </div>
+    <div class="hint" style="margin-top:10px">trilha de continuidade:
+      prototipação → jornada empreendedora → tração → <b>ponte para Endostartups</b>.</div>
+  </div>
+
+  <!-- RECONHECIMENTO -->
+  <div class="annot">Bloco 5 · Reconhecimento / credibilidade</div>
+  <div class="block">
+    <div class="row" style="align-items:center">
+      <div class="col"><div class="img" style="min-height:60px">logo ANPEI</div></div>
+      <div class="col"><div class="img" style="min-height:60px">logo MIT-REAP</div></div>
+      <div class="col"><div class="img" style="min-height:60px">logo univ.</div></div>
+    </div>
+    <div class="card" style="margin-top:12px">
+      <div class="lab">depoimento</div>
+      <div class="skeleton bar s"></div><div class="skeleton bar s s2"></div>
+      <div class="hint">"" — aluno/coordenador &nbsp; <span class="ph">LACUNA 4</span>
+        depoimentos + imagens com direito de uso</div>
+    </div>
+  </div>
+
+  <!-- OFERTA -->
+  <div class="annot">Bloco 6 · Como levar o Campustart (oferta)</div>
+  <div class="block">
+    <div class="row">
+      <div class="col card"><h2 class="bt">In-company</h2>
+        <div class="skeleton bar s"></div></div>
+      <div class="col card"><h2 class="bt">Em universidade</h2>
+        <div class="skeleton bar s"></div></div>
+      <div class="col card"><h2 class="bt">Aberto ao ecossistema</h2>
+        <div class="skeleton bar s"></div></div>
+    </div>
+    <div class="hint"><span class="ph">LACUNA 5</span> formato(s) comercial(is) reais
+      e o que pedir no CTA.</div>
+  </div>
+
+  <!-- CTA FINAL -->
+  <div class="annot">Bloco 7 · CTA final + rodapé</div>
+  <div class="block" style="text-align:center">
+    <h2 class="bt">Chamada de conversão</h2>
+    <div class="skeleton bar s" style="margin:0 auto"></div>
+    <div style="margin-top:10px">
+      <a class="btn">Quero uma edição do Campustart</a>
+      <a class="btn ghost">Baixar e-book de uma edição</a>
+    </div>
+    <div class="hint" style="margin-top:8px"><span class="ph">LACUNA 5</span> destino
+      real (e-mail / formulário / WhatsApp / Pipefy)</div>
+  </div>
+
+  <footer>
+    Wireframe de baixa fidelidade — define <b>estrutura e narrativa</b>.<br>
+    Cores, tipografia e imagens finais entram na etapa 3 (design A/B/C).
+  </footer>
+
+</div>
+</body>
+</html>
