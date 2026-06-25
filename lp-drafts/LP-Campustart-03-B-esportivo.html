@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Campustart — A Olimpíada de Inovação nas Universidades | Sinapsa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,800;1,900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#041939;
+    --ink:#0B1A30;
+    --paper:#F4F5F7;
+    --paper2:#FFFFFF;
+    --coral:#E8694F;
+    --coral-dark:#cf5238;
+    --violet:#7A66CC;
+    --gold:#FFC93C;
+    --lime:#3BD16F;
+    --grad-energy:linear-gradient(100deg,var(--coral) 0%,var(--violet) 100%);
+    --grad-medal:linear-gradient(100deg,var(--coral) 0%,var(--gold) 100%);
+    --grad-deep:linear-gradient(135deg,#041939 0%,#0B2A52 55%,#163a6e 100%);
+    --shadow:0 18px 50px -20px rgba(4,25,57,.45);
+    --maxw:1180px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Archivo',system-ui,sans-serif;
+    color:var(--ink);
+    background:var(--paper);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  h1,h2,h3{line-height:1.02;letter-spacing:-.01em}
+  .display{font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;letter-spacing:.01em;line-height:.95}
+  .mono{font-family:'IBM Plex Mono',monospace}
+  .skew{font-style:italic}
+
+  /* focus visible for accessibility */
+  a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:4px}
+
+  /* ---------- buttons ---------- */
+  .btn{
+    display:inline-flex;align-items:center;gap:.6rem;
+    font-family:'Archivo',sans-serif;font-weight:800;font-size:1rem;
+    text-transform:uppercase;letter-spacing:.03em;
+    padding:16px 28px;border-radius:10px;border:0;cursor:pointer;
+    transition:transform .15s ease, box-shadow .15s ease, background .2s ease;
+    line-height:1;
+  }
+  .btn-primary{background:var(--coral);color:#fff;box-shadow:0 10px 26px -8px rgba(232,105,79,.7)}
+  .btn-primary:hover{transform:translateY(-2px);background:var(--coral-dark)}
+  .btn-ghost{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.55)}
+  .btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,.08);transform:translateY(-2px)}
+  .btn-ghost-dark{background:transparent;color:var(--navy);border:2px solid rgba(4,25,57,.3)}
+  .btn-ghost-dark:hover{border-color:var(--navy);background:rgba(4,25,57,.05);transform:translateY(-2px)}
+  .btn-sm{padding:12px 20px;font-size:.85rem}
+
+  .pill{
+    display:inline-flex;align-items:center;gap:.4rem;
+    font-family:'IBM Plex Mono',monospace;font-size:.72rem;font-weight:500;
+    text-transform:uppercase;letter-spacing:.08em;
+    background:rgba(255,201,60,.18);color:#7a5a00;
+    border:1px dashed #c79a1e;
+    padding:4px 10px;border-radius:999px;white-space:nowrap;
+  }
+  .pill-dark{background:rgba(255,201,60,.16);color:#ffe08a;border-color:rgba(255,201,60,.55)}
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;font-weight:600;
+    text-transform:uppercase;letter-spacing:.22em;font-size:.78rem;
+  }
+
+  /* ---------- header ---------- */
+  header.site{
+    position:sticky;top:0;z-index:50;
+    background:rgba(4,25,57,.92);backdrop-filter:blur(8px);
+    border-bottom:1px solid rgba(255,255,255,.08);
+  }
+  .navbar{display:flex;align-items:center;justify-content:space-between;height:70px}
+  .brand{display:flex;align-items:center;gap:.55rem;color:#fff;font-family:'Anton',sans-serif;font-size:1.45rem;text-transform:uppercase;letter-spacing:.02em}
+  .brand .mark{
+    width:32px;height:32px;border-radius:8px;background:var(--grad-medal);
+    display:grid;place-items:center;color:#041939;font-family:'Anton';font-size:1.1rem;
+    transform:skewX(-6deg);
+  }
+  .brand small{font-family:'IBM Plex Mono';font-size:.6rem;letter-spacing:.18em;color:var(--gold);text-transform:uppercase;font-weight:500}
+  nav.links{display:flex;gap:1.8rem;align-items:center}
+  nav.links a{color:#cdd6e4;font-weight:600;font-size:.9rem;text-transform:uppercase;letter-spacing:.04em}
+  nav.links a:hover{color:#fff}
+  @media(max-width:880px){nav.links a:not(.btn){display:none}}
+
+  /* ---------- hero ---------- */
+  .hero{position:relative;background:var(--grad-deep);color:#fff;overflow:hidden;padding:90px 0 150px}
+  .hero::before{
+    content:"";position:absolute;inset:0;
+    background:
+      radial-gradient(circle at 85% 15%,rgba(122,102,204,.45),transparent 45%),
+      radial-gradient(circle at 12% 85%,rgba(232,105,79,.4),transparent 45%);
+    pointer-events:none;
+  }
+  .hero .stripes{
+    position:absolute;top:-40px;right:-60px;width:560px;height:140%;
+    background:repeating-linear-gradient(115deg,rgba(255,201,60,.10) 0 22px,transparent 22px 60px);
+    transform:skewX(-12deg);pointer-events:none;
+  }
+  .hero-grid{position:relative;display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center}
+  @media(max-width:900px){.hero-grid{grid-template-columns:1fr;gap:36px}}
+  .hero .eyebrow{color:var(--gold);display:inline-flex;align-items:center;gap:.6rem}
+  .hero .eyebrow::before{content:"";width:38px;height:3px;background:var(--grad-medal);display:inline-block;border-radius:2px}
+  .hero h1{font-family:'Archivo';font-weight:900;font-size:clamp(2.2rem,5.2vw,4rem);margin:22px 0 18px;letter-spacing:-.02em}
+  .hero h1 .hl{color:var(--gold)}
+  .hero h1 .hl2{color:var(--coral)}
+  .hero p.sub{font-size:1.18rem;color:#c4d0e2;max-width:560px;font-weight:500}
+  .hero-cta{display:flex;flex-wrap:wrap;gap:14px;margin:34px 0 22px}
+  .proof{display:inline-flex;align-items:center;gap:.6rem;font-family:'IBM Plex Mono';font-size:.82rem;color:#aebbd0;letter-spacing:.03em}
+  .proof .dot{width:9px;height:9px;border-radius:50%;background:var(--lime);box-shadow:0 0 12px var(--lime)}
+
+  /* hero scoreboard card */
+  .score-card{
+    background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);
+    border-radius:18px;padding:26px;backdrop-filter:blur(6px);box-shadow:var(--shadow);
+  }
+  .score-card .sc-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+  .score-card .sc-head .eyebrow{color:var(--gold);font-size:.68rem;letter-spacing:.16em}
+  .live{display:inline-flex;align-items:center;gap:.4rem;font-family:'IBM Plex Mono';font-size:.66rem;color:var(--lime);text-transform:uppercase;letter-spacing:.1em}
+  .live .dot{width:8px;height:8px;border-radius:50%;background:var(--lime);animation:blink 1.4s infinite}
+  @keyframes blink{50%{opacity:.25}}
+  .sc-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .sc-cell{background:rgba(4,25,57,.5);border-radius:12px;padding:14px 12px;text-align:center;border:1px solid rgba(255,255,255,.06)}
+  .sc-cell .num{font-family:'Anton';font-size:2.4rem;color:#fff;line-height:1}
+  .sc-cell .num.gold{color:var(--gold)}
+  .sc-cell .num.coral{color:var(--coral)}
+  .sc-cell .lbl{font-family:'IBM Plex Mono';font-size:.6rem;text-transform:uppercase;letter-spacing:.1em;color:#9fb0c8;margin-top:6px}
+  .sc-foot{margin-top:16px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+  .sc-foot .ref{font-family:'IBM Plex Mono';font-size:.66rem;color:#8fa1bb;letter-spacing:.03em}
+
+  /* diagonal bottom cut on hero */
+  .hero .cut{position:absolute;bottom:-1px;left:0;width:100%;height:90px;line-height:0}
+  .hero .cut svg{width:100%;height:100%;display:block}
+
+  /* ---------- sections ---------- */
+  section{position:relative}
+  .sec{padding:84px 0}
+  .sec-head{max-width:780px;margin-bottom:46px}
+  .sec-head .eyebrow{color:var(--coral);display:inline-flex;align-items:center;gap:.6rem}
+  .sec-head .eyebrow::before{content:"";width:32px;height:3px;background:var(--coral);display:inline-block}
+  .sec-head h2{font-family:'Archivo';font-weight:900;font-size:clamp(1.8rem,3.6vw,2.8rem);margin:16px 0 12px;letter-spacing:-.02em}
+  .sec-head p{font-size:1.08rem;color:#445064;max-width:680px}
+  .num-tag{font-family:'Anton';color:rgba(232,105,79,.22);font-size:1.6rem;letter-spacing:.04em}
+
+  /* what-is cards */
+  .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  @media(max-width:840px){.grid-3{grid-template-columns:1fr}}
+  .card{background:var(--paper2);border:1px solid #e4e7ed;border-radius:16px;padding:28px;box-shadow:0 8px 24px -18px rgba(4,25,57,.3);transition:transform .18s,box-shadow .18s}
+  .card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+  .card .icn{width:48px;height:48px;border-radius:12px;background:var(--grad-energy);display:grid;place-items:center;color:#fff;font-family:'Anton';font-size:1.3rem;margin-bottom:18px;transform:skewX(-6deg)}
+  .card h3{font-size:1.18rem;font-weight:800;margin-bottom:8px}
+  .card p{color:#4a5667;font-size:.96rem}
+  .concept-band{margin-top:34px;background:var(--grad-energy);color:#fff;border-radius:16px;padding:26px 30px;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+  .concept-band .big{font-family:'Anton';font-size:1.5rem;text-transform:uppercase;line-height:1;letter-spacing:.01em}
+  .concept-band p{color:rgba(255,255,255,.92);font-weight:500;flex:1;min-width:260px}
+
+  /* methodology */
+  .sec.dark{background:var(--grad-deep);color:#fff}
+  .sec.dark .sec-head h2{color:#fff}
+  .sec.dark .sec-head p{color:#bcc9dd}
+  .sec.dark .sec-head .eyebrow{color:var(--gold)}
+  .sec.dark .sec-head .eyebrow::before{background:var(--gold)}
+  .foundations{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:42px}
+  .chip{font-family:'IBM Plex Mono';font-size:.78rem;letter-spacing:.04em;padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);color:#dde6f2}
+  .journey{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;position:relative}
+  @media(max-width:840px){.journey{grid-template-columns:1fr}}
+  .stage{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.13);border-radius:16px;padding:24px;position:relative;overflow:hidden}
+  .stage .stagenum{font-family:'Anton';font-size:3.4rem;color:rgba(255,201,60,.28);line-height:.8;position:absolute;top:14px;right:16px}
+  .stage h3{font-size:1.12rem;font-weight:800;margin:6px 0 8px;position:relative}
+  .stage p{color:#b8c5d9;font-size:.92rem;position:relative}
+  .stage .lap{font-family:'IBM Plex Mono';font-size:.66rem;color:var(--gold);text-transform:uppercase;letter-spacing:.12em}
+  .demoday{margin-top:24px;background:var(--grad-medal);color:#041939;border-radius:18px;padding:28px 32px;display:flex;align-items:center;gap:24px;flex-wrap:wrap;box-shadow:var(--shadow)}
+  .demoday .medal{font-family:'Anton';font-size:3rem;line-height:1}
+  .demoday h3{font-family:'Anton';font-size:1.8rem;text-transform:uppercase;line-height:1;margin-bottom:6px}
+  .demoday p{font-weight:600;flex:1;min-width:240px}
+
+  /* editions scoreboard */
+  .board{
+    background:var(--ink);border-radius:20px;padding:34px;color:#fff;box-shadow:var(--shadow);
+    border:2px solid rgba(255,201,60,.25);position:relative;overflow:hidden;
+  }
+  .board::after{content:"";position:absolute;top:0;left:0;width:100%;height:6px;background:var(--grad-medal)}
+  .board .b-head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:12px;margin-bottom:26px}
+  .board .b-head .team{font-family:'Anton';font-size:1.9rem;text-transform:uppercase}
+  .board .b-head .team span{color:var(--gold)}
+  .board-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  @media(max-width:720px){.board-grid{grid-template-columns:repeat(2,1fr)}}
+  .stat{text-align:center;padding:18px 10px;background:rgba(255,255,255,.04);border-radius:14px;border:1px solid rgba(255,255,255,.08)}
+  .stat .n{font-family:'Anton';font-size:3.2rem;line-height:.9;color:#fff}
+  .stat .n.g{color:var(--gold)}
+  .stat .l{font-family:'IBM Plex Mono';font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:#9fb0c8;margin-top:8px}
+  .board .slot{margin-top:22px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding-top:20px;border-top:1px dashed rgba(255,255,255,.18)}
+  .board .slot .sname{font-family:'Archivo';font-weight:800;color:#cdd8e8;text-transform:uppercase;letter-spacing:.04em;font-size:.95rem}
+
+  /* impact */
+  .sec.impact{background:var(--paper2)}
+  .medals{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  @media(max-width:840px){.medals{grid-template-columns:repeat(2,1fr)}}
+  .medal-card{border:1px solid #e4e7ed;border-radius:16px;padding:24px;text-align:center;background:var(--paper);position:relative;overflow:hidden}
+  .medal-card::before{content:"";position:absolute;top:0;left:0;width:100%;height:5px;background:var(--grad-medal)}
+  .medal-card .n{font-family:'Anton';font-size:2.9rem;line-height:.9;color:var(--navy)}
+  .medal-card .n.coral{color:var(--coral)}
+  .medal-card .l{font-family:'IBM Plex Mono';font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:#5a6577;margin-top:8px}
+  .medal-card .pill{margin-top:10px}
+  .track{margin-top:40px}
+  .track h3{font-family:'Archivo';font-weight:800;font-size:1.3rem;margin-bottom:20px;text-transform:uppercase;letter-spacing:.01em}
+  .track-steps{display:flex;gap:0;flex-wrap:wrap;align-items:stretch}
+  .tstep{flex:1;min-width:170px;background:var(--navy);color:#fff;padding:22px 20px;position:relative;clip-path:polygon(0 0,calc(100% - 22px) 0,100% 50%,calc(100% - 22px) 100%,0 100%,22px 50%);margin-right:-14px;padding-left:34px}
+  .tstep:first-child{clip-path:polygon(0 0,calc(100% - 22px) 0,100% 50%,calc(100% - 22px) 100%,0 100%);padding-left:24px;border-radius:12px 0 0 12px}
+  .tstep:last-child{clip-path:polygon(0 0,100% 0,100% 100%,0 100%,22px 50%);border-radius:0 12px 12px 0}
+  .tstep:nth-child(1){background:#0B2A52}
+  .tstep:nth-child(2){background:#163a6e}
+  .tstep:nth-child(3){background:var(--violet)}
+  .tstep:nth-child(4){background:var(--coral)}
+  .tstep .k{font-family:'IBM Plex Mono';font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;opacity:.8}
+  .tstep .v{font-weight:800;font-size:1.02rem;margin-top:6px;line-height:1.1}
+  @media(max-width:760px){.tstep,.tstep:first-child,.tstep:last-child{clip-path:none;margin:0 0 10px;border-radius:12px;padding-left:24px}}
+
+  /* recognition */
+  .sec.recog{background:var(--paper)}
+  .logos{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:38px}
+  @media(max-width:680px){.logos{grid-template-columns:1fr}}
+  .logo-box{height:96px;border-radius:14px;background:var(--paper2);border:1px solid #e4e7ed;display:grid;place-items:center;text-align:center;color:#6a7488;font-family:'IBM Plex Mono';font-size:.78rem;letter-spacing:.08em;text-transform:uppercase}
+  .logo-box strong{display:block;font-family:'Archivo';font-weight:900;font-size:1.1rem;color:var(--navy);letter-spacing:0}
+  .quote{background:var(--grad-deep);color:#fff;border-radius:18px;padding:36px;position:relative;overflow:hidden;box-shadow:var(--shadow)}
+  .quote .qmark{font-family:'Anton';font-size:6rem;color:rgba(255,201,60,.25);position:absolute;top:-6px;left:24px;line-height:1}
+  .quote blockquote{font-size:1.25rem;font-weight:700;line-height:1.4;max-width:760px;position:relative;margin:14px 0 18px}
+  .quote .who{font-family:'IBM Plex Mono';font-size:.82rem;color:#bcc9dd;letter-spacing:.03em}
+
+  /* offer */
+  .offers{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  @media(max-width:840px){.offers{grid-template-columns:1fr}}
+  .offer{background:var(--paper2);border:1px solid #e4e7ed;border-radius:18px;padding:30px;position:relative;overflow:hidden;transition:transform .18s,box-shadow .18s}
+  .offer:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+  .offer .tier{font-family:'IBM Plex Mono';font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--coral);font-weight:600}
+  .offer h3{font-family:'Archivo';font-weight:900;font-size:1.5rem;margin:10px 0 6px;text-transform:uppercase}
+  .offer p{color:#4a5667;font-size:.96rem;margin-bottom:16px}
+  .offer.featured{background:var(--grad-deep);color:#fff;border-color:transparent}
+  .offer.featured .tier{color:var(--gold)}
+  .offer.featured p{color:#c4d0e2}
+  .offer .ribbon{position:absolute;top:16px;right:-34px;background:var(--coral);color:#fff;font-family:'IBM Plex Mono';font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;padding:5px 40px;transform:rotate(45deg);font-weight:600}
+
+  /* final CTA */
+  .final{background:var(--grad-energy);color:#fff;text-align:center;padding:96px 0;position:relative;overflow:hidden}
+  .final::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(115deg,rgba(255,255,255,.06) 0 18px,transparent 18px 50px);transform:skewX(-12deg)}
+  .final .inner{position:relative}
+  .final h2{font-family:'Archivo';font-weight:900;font-size:clamp(2rem,5vw,3.4rem);letter-spacing:-.02em;line-height:1.02;margin-bottom:14px}
+  .final p{font-size:1.2rem;color:rgba(255,255,255,.92);max-width:600px;margin:0 auto 30px;font-weight:500}
+  .final .btn-primary{background:#fff;color:var(--coral)}
+  .final .btn-primary:hover{background:var(--ink);color:#fff}
+  .final .btn-ghost{border-color:rgba(255,255,255,.7)}
+  .final-cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+
+  /* footer */
+  footer.site{background:var(--ink);color:#9fb0c8;padding:48px 0 36px}
+  .foot-grid{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:24px}
+  footer .brand{color:#fff;margin-bottom:10px}
+  footer p{font-family:'IBM Plex Mono';font-size:.8rem;letter-spacing:.03em}
+  footer .foot-links{display:flex;gap:22px;flex-wrap:wrap}
+  footer .foot-links a{color:#9fb0c8;font-size:.86rem;font-weight:600;text-transform:uppercase;letter-spacing:.04em}
+  footer .foot-links a:hover{color:var(--gold)}
+  .foot-bottom{margin-top:30px;padding-top:20px;border-top:1px solid rgba(255,255,255,.1);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:.74rem}
+
+  /* placeholder note */
+  .ph-note{display:inline-block;margin-top:10px}
+</style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="site">
+  <div class="wrap navbar">
+    <a class="brand" href="#top" aria-label="Campustart, página inicial">
+      <span class="mark" aria-hidden="true">C</span>
+      <span>Campustart<br><small>by Sinapsa</small></span>
+    </a>
+    <nav class="links" aria-label="Navegação principal">
+      <a href="#oque">O que é</a>
+      <a href="#metodo">Metodologia</a>
+      <a href="#placar">Edições</a>
+      <a href="#oferta">Oferta</a>
+      <a class="btn btn-primary btn-sm" href="#final">Quero uma edição</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="top">
+  <div class="stripes" aria-hidden="true"></div>
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">A Olimpíada de Inovação nas Universidades</span>
+      <h1>Campustart conecta <span class="hl2">desafios reais</span> de empresas a estudantes e pesquisadores — e transforma <span class="hl">conhecimento de fronteira</span> em soluções, talentos e transferência tecnológica.</h1>
+      <p class="sub">Uma jornada intensiva de ~40h em formato de competição: times multidisciplinares entram em campo para resolver desafios corporativos de verdade.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#final">Levar o Campustart para minha universidade/empresa</a>
+        <a class="btn btn-ghost" href="#placar">Ver edições</a>
+      </div>
+      <span class="proof"><span class="dot" aria-hidden="true"></span> Reconhecido pela ANPEI · apoio MIT-REAP</span>
+    </div>
+
+    <!-- scoreboard card -->
+    <aside class="score-card" aria-label="Placar de referência da metodologia">
+      <div class="sc-head">
+        <span class="eyebrow">Placar · referência</span>
+        <span class="live"><span class="dot" aria-hidden="true"></span> ao vivo</span>
+      </div>
+      <div class="sc-grid">
+        <div class="sc-cell"><div class="num gold" data-count="304">304</div><div class="lbl">inscrições</div></div>
+        <div class="sc-cell"><div class="num" data-count="25">25</div><div class="lbl">times</div></div>
+        <div class="sc-cell"><div class="num coral" data-count="113">113</div><div class="lbl">atletas</div></div>
+        <div class="sc-cell"><div class="num" data-count="41">41</div><div class="lbl">mentores</div></div>
+      </div>
+      <div class="sc-foot">
+        <span class="ref">3ª Olimpíada de Energia 2022 · 34 instituições · MIT-REAP Rio</span>
+      </div>
+    </aside>
+  </div>
+
+  <div class="cut" aria-hidden="true">
+    <svg viewBox="0 0 1440 90" preserveAspectRatio="none"><polygon fill="#F4F5F7" points="0,90 1440,90 1440,18 0,72"/></svg>
+  </div>
+</section>
+
+<!-- ===== 1. O QUE É ===== -->
+<section class="sec" id="oque">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">01 — O que é</span>
+      <h2>Empresas trazem o desafio. As universidades entram em campo.</h2>
+      <p>O Campustart coloca a inteligência acadêmica para resolver problemas corporativos reais — identificando talentos e abrindo caminho para soluções inusitadas que ninguém esperava.</p>
+    </div>
+
+    <div class="grid-3">
+      <article class="card">
+        <div class="icn" aria-hidden="true">01</div>
+        <h3>Desafios reais, não cases fictícios</h3>
+        <p>Conecta problemas corporativos concretos a estudantes e pesquisadores, com o conhecimento de fronteira da universidade aplicado de ponta a ponta.</p>
+      </article>
+      <article class="card">
+        <div class="icn" aria-hidden="true">02</div>
+        <h3>Talentos em destaque</h3>
+        <p>A competição revela quem performa sob pressão — identificando talentos para estágios, contratações e parcerias de pesquisa.</p>
+      </article>
+      <article class="card">
+        <div class="icn" aria-hidden="true">03</div>
+        <h3>Transferência tecnológica</h3>
+        <p>Abre caminho para soluções inusitadas e para a ponte entre o que se produz no laboratório e o que a empresa precisa no mercado.</p>
+      </article>
+    </div>
+
+    <div class="concept-band">
+      <span class="big">Blind spot<br>breakthroughs</span>
+      <p>O conceito por trás do programa: as melhores soluções nascem nos pontos cegos — onde olhares de fora do problema enxergam o que quem está dentro dele já não vê.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 2. METODOLOGIA / JORNADA ===== -->
+<section class="sec dark" id="metodo">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">02 — Metodologia / Jornada (~40h)</span>
+      <h2>A regra do jogo: ciência por trás de cada etapa da competição.</h2>
+      <p>Uma base metodológica proprietária combina rigor científico com a energia de uma competição esportiva.</p>
+    </div>
+
+    <div class="foundations" role="list" aria-label="Fundamentos da metodologia">
+      <span class="chip" role="listitem">Psicologia clínica</span>
+      <span class="chip" role="listitem">Neurociência</span>
+      <span class="chip" role="listitem">Análise transacional</span>
+      <span class="chip" role="listitem">Dinâmica de grupos</span>
+      <span class="chip" role="listitem">Métodos ágeis</span>
+    </div>
+
+    <div class="journey">
+      <article class="stage">
+        <span class="stagenum" aria-hidden="true">1</span>
+        <span class="lap">Etapa 1 · classificatória</span>
+        <h3>Identificação de desafios</h3>
+        <p>Mapeamento e seleção dos desafios corporativos que entram na competição.</p>
+      </article>
+      <article class="stage">
+        <span class="stagenum" aria-hidden="true">2</span>
+        <span class="lap">Etapa 2 · semifinal</span>
+        <h3>Indicadores e valoração de benefícios</h3>
+        <p>Definição de KPIs e ROI — quanto cada solução vale, em métricas que a empresa reconhece.</p>
+      </article>
+      <article class="stage">
+        <span class="stagenum" aria-hidden="true">3</span>
+        <span class="lap">Etapa 3 · em campo</span>
+        <h3>Formação de grupos e propostas</h3>
+        <p>Times multidisciplinares montam plano, tecnologias, recursos e parceiros para a solução.</p>
+      </article>
+    </div>
+
+    <div class="demoday">
+      <span class="medal" aria-hidden="true">🏆</span>
+      <div>
+        <h3>DemoDay — a final</h3>
+        <p>Os times sobem ao pitch diante de uma banca de especialistas e lideranças. É onde as soluções viram decisão — e os talentos, oportunidade.</p>
+      </div>
+      <span class="pill">⚠ a confirmar — escopo somente universitário</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 3. EDIÇÕES REALIZADAS (PLACAR) ===== -->
+<section class="sec" id="placar">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">03 — Edições realizadas</span>
+      <h2>O placar oficial do Campustart.</h2>
+      <p>Resultados consolidados das edições já disputadas em campo.</p>
+    </div>
+
+    <div class="board" aria-label="Placar Campustart UNIRIO">
+      <div class="b-head">
+        <span class="team">Campustart · <span>UNIRIO</span></span>
+        <span class="pill pill-dark">Edição validada</span>
+      </div>
+      <div class="board-grid">
+        <div class="stat"><div class="n g">24</div><div class="l">soluções</div></div>
+        <div class="stat"><div class="n">14</div><div class="l">cursos</div></div>
+        <div class="stat"><div class="n">4</div><div class="l">edições</div></div>
+        <div class="stat"><div class="n">40h</div><div class="l">jornada</div></div>
+      </div>
+      <div class="slot">
+        <span class="sname">Outras edições</span>
+        <span class="pill pill-dark">⚠ a confirmar — edições além da UNIRIO</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 4. RESULTADOS E IMPACTO ===== -->
+<section class="sec impact" id="impacto">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">04 — Resultados e impacto</span>
+      <h2>O quadro de medalhas.</h2>
+      <p>Impacto agregado do programa e a trilha de continuidade que leva uma solução do protótipo à tração.</p>
+    </div>
+
+    <div class="medals">
+      <div class="medal-card">
+        <div class="n">R$ —</div>
+        <div class="l">valor gerado (univ.)</div>
+        <span class="pill ph-note">⚠ a confirmar</span>
+      </div>
+      <div class="medal-card">
+        <div class="n coral">+—</div>
+        <div class="l">talentos identificados</div>
+        <span class="pill ph-note">⚠ a confirmar</span>
+      </div>
+      <div class="medal-card">
+        <div class="n">72</div>
+        <div class="l">oportunidades · ref. Boticário</div>
+        <span class="pill ph-note">⚠ a confirmar</span>
+      </div>
+      <div class="medal-card">
+        <div class="n coral">R$ 15 mi+</div>
+        <div class="l">ref. Olimpíada Boticário</div>
+        <span class="pill ph-note">⚠ a confirmar</span>
+      </div>
+    </div>
+
+    <div class="track">
+      <h3>Trilha de continuidade</h3>
+      <div class="track-steps">
+        <div class="tstep"><div class="k">Largada</div><div class="v">Prototipação</div></div>
+        <div class="tstep"><div class="k">Volta 2</div><div class="v">Jornada empreendedora</div></div>
+        <div class="tstep"><div class="k">Volta 3</div><div class="v">Tração</div></div>
+        <div class="tstep"><div class="k">Chegada</div><div class="v">Ponte para Endostartups</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 5. RECONHECIMENTO ===== -->
+<section class="sec recog" id="reconhecimento">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">05 — Reconhecimento</span>
+      <h2>Quem chancela o jogo.</h2>
+      <p>Instituições que reconhecem e apoiam a metodologia do Campustart.</p>
+    </div>
+
+    <div class="logos" role="list" aria-label="Instituições parceiras">
+      <div class="logo-box" role="listitem"><div><strong>ANPEI</strong>reconhecimento</div></div>
+      <div class="logo-box" role="listitem"><div><strong>MIT-REAP</strong>apoio</div></div>
+      <div class="logo-box" role="listitem"><div><strong>Universidade</strong>logo a confirmar</div></div>
+    </div>
+
+    <figure class="quote">
+      <span class="qmark" aria-hidden="true">“</span>
+      <blockquote>Depoimento de liderança ou participante sobre o impacto da edição — frase de impacto que comprova a energia e o resultado da competição.</blockquote>
+      <figcaption class="who">Nome, Cargo — Instituição &nbsp; <span class="pill pill-dark" style="background:rgba(255,201,60,.16)">⚠ a confirmar — depoimento e direito de uso</span></figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ===== 6. OFERTA ===== -->
+<section class="sec" id="oferta">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">06 — Oferta</span>
+      <h2>Escolha o seu campeonato.</h2>
+      <p>Três formatos para entrar em campo — adaptáveis ao seu contexto.
+        <span class="pill" style="margin-left:6px">⚠ a confirmar — oferta comercial</span>
+      </p>
+    </div>
+
+    <div class="offers">
+      <article class="offer">
+        <span class="tier">Formato 01</span>
+        <h3>In-company</h3>
+        <p>A competição roda dentro da empresa, mobilizando times sobre os seus próprios desafios estratégicos.</p>
+        <a class="btn btn-ghost-dark btn-sm" href="#final">Falar com o time</a>
+      </article>
+      <article class="offer featured">
+        <span class="ribbon" aria-hidden="true">Popular</span>
+        <span class="tier">Formato 02</span>
+        <h3>Em universidade</h3>
+        <p>A edição clássica: estudantes e pesquisadores disputam desafios corporativos no campus, com DemoDay final.</p>
+        <a class="btn btn-primary btn-sm" href="#final">Levar para o campus</a>
+      </article>
+      <article class="offer">
+        <span class="tier">Formato 03</span>
+        <h3>Aberto ao ecossistema</h3>
+        <p>Uma olimpíada multi-instituição que conecta empresas, universidades e talentos de todo o ecossistema.</p>
+        <a class="btn btn-ghost-dark btn-sm" href="#final">Quero participar</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 7. CTA FINAL ===== -->
+<section class="final" id="final">
+  <div class="wrap inner">
+    <h2 class="skew">Pronto para entrar em campo?</h2>
+    <p>Traga seus desafios. Mobilize talentos. Transforme conhecimento de fronteira em resultado.</p>
+    <div class="final-cta">
+      <a class="btn btn-primary" href="#" aria-label="Quero uma edição do Campustart — destino a confirmar">Quero uma edição do Campustart</a>
+      <a class="btn btn-ghost" href="#" aria-label="Baixar e-book de uma edição — destino a confirmar">Baixar e-book de uma edição</a>
+    </div>
+    <p style="font-size:.8rem;margin-top:18px;opacity:.85"><span class="pill" style="background:rgba(0,0,0,.18);color:#fff;border-color:rgba(255,255,255,.5)">⚠ a confirmar — destino dos CTAs</span></p>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="#top">
+          <span class="mark" aria-hidden="true">C</span>
+          <span>Campustart<br><small>by Sinapsa</small></span>
+        </a>
+        <p>A olimpíada de inovação nas universidades.</p>
+      </div>
+      <nav class="foot-links" aria-label="Rodapé">
+        <a href="#oque">O que é</a>
+        <a href="#metodo">Metodologia</a>
+        <a href="#placar">Edições</a>
+        <a href="#oferta">Oferta</a>
+        <a href="#final">Quero uma edição</a>
+      </nav>
+    </div>
+    <div class="foot-bottom">
+      <span>Sinapsa · campustart.com.br</span>
+      <span>© 2026 Sinapsa. Todos os direitos reservados.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Contador animado simples para o scoreboard do hero (respeita prefers-reduced-motion)
+  (function(){
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var els = document.querySelectorAll('.score-card .num[data-count]');
+    if(reduce || !('IntersectionObserver' in window)) return;
+    function animate(el){
+      var target = parseInt(el.getAttribute('data-count'),10);
+      var dur = 900, start = null;
+      function step(ts){
+        if(!start) start = ts;
+        var p = Math.min((ts-start)/dur,1);
+        el.textContent = Math.floor(p*target);
+        if(p<1) requestAnimationFrame(step); else el.textContent = target;
+      }
+      requestAnimationFrame(step);
+    }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ animate(e.target); io.unobserve(e.target); }
+      });
+    },{threshold:.5});
+    els.forEach(function(el){ io.observe(el); });
+  })();
+</script>
+</body>
+</html>
